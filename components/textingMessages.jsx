@@ -1,3 +1,6 @@
+import Pinocchio from '/pinocchio.webp';
+import Cricket from '/cricket.webp';
+
 export default function TextingMessages({ allTexts }) {
     return (
         <>
@@ -8,7 +11,7 @@ export default function TextingMessages({ allTexts }) {
                     )
                 } else {
                     return (
-                        <div className="mt-2" key={i}>
+                        <div className='mt-2' key={i}>
                             {text.messages?.map((message, j) => (
                             <div key={j} className={`chat ${i % 2 === 0 ? 'chat-start' : 'chat-end'} ${text.messages?.length - 1 === j ? '' : (i % 2 === 0 ? 'ml-10' : 'mr-10')}`}>
                                 {j === 0 && (
@@ -20,7 +23,7 @@ export default function TextingMessages({ allTexts }) {
                                 {text.messages?.length - 1 === j && (
                                 <div className="chat-image avatar">
                                     <div className="w-10 rounded-full">
-                                    <img src={text.name === 'Pinocchio' ? '/pinocchio.webp' : '/cricket.webp'} />
+                                    <img style={{ width: 35, height: 35, borderRadius: 9999, objectFit: 'cover' }} src={text.name === 'Pinocchio' ? Pinocchio : Cricket} />
                                     </div>
                                 </div>
                                 )}
