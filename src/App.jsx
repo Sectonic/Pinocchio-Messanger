@@ -38,9 +38,9 @@ function App() {
     if (allTexts[allTexts.length - 1]?.name === 'Sebastian Cricket') {
       (async () => {
         const currentResponse = allResponses[currentConversation];
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         setPinocchioLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 3500));
         setPinocchioLoading(false);
         setAllTexts(prev => [...prev, {
           name: 'Pinocchio',
@@ -79,9 +79,9 @@ function App() {
   useEffect(() => {
     if (currentConversation !== 0) {
       (async () => {
-        await new Promise(resolve => setTimeout(resolve, 2500));
+        await new Promise(resolve => setTimeout(resolve, 5000));
         setPinocchioLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 2500));
         setPinocchioLoading(false);
         const currentResponse = allResponses[currentConversation];
         setAllTexts(prev => [...prev, 
@@ -102,6 +102,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
+      setPinocchioLoading(true);
       const request = await fetch(`https://api.jsonbin.io/v3/b/${import.meta.env.VITE_BIN_ID}`, {
         method: 'GET',
         headers: {
@@ -112,9 +113,7 @@ function App() {
       });
       const data = await request.json();
       setAllResponses(data.record);
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setPinocchioLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       setPinocchioLoading(false);
       const initialResponse = data.record[0];
       setAllTexts([{
@@ -126,8 +125,8 @@ function App() {
   }, []);
 
   return (
-    <div data-theme="winter" className="h-screen w-screen flex justify-center items-center bg-primary-content">
-        <div className="mockup-browser border bg-primary w-[600px]">
+    <div data-theme="winter" className="h-screen w-screen pt-20 overflow-y-scroll flex justify-center items-center bg-primary-content">
+        <div className="my-20 mockup-browser border bg-primary w-[600px]">
             <div className="mockup-browser-toolbar">
               <div className="input pointer-events-none bg-primary-content">Pinocchio Messanger</div>
             </div>
