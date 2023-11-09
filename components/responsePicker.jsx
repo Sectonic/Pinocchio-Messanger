@@ -12,7 +12,7 @@ export default function ResponsePicker ({ setResponse, currentResponseIndex, cur
                 <div 
                     style={{textTransform: 'none', justifyContent: 'flex-start'}} 
                     key={i} 
-                    className={` mt-[5px] xl:mt-[10px] w-full flex max-xl:btn-sm btn ${currentResponseIndex === i ? 'btn-primary' : 'btn-ghost'}`} 
+                    className={` mt-[5px] 2xl:mt-[10px] w-full flex max-2xl:btn-sm btn ${currentResponseIndex === i ? 'btn-primary' : 'btn-ghost'}`} 
                     onClick={() => setMessage(i)}
                 >
                     {response.messageTitle}
