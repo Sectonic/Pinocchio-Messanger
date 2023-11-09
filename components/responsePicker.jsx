@@ -10,9 +10,9 @@ export default function ResponsePicker ({ setResponse, currentResponseIndex, cur
         <>
             {currentConversation?.possibleConversations?.map((response, i) => (
                 <div 
-                    style={{marginTop: 10, textTransform: 'none', justifyContent: 'flex-start'}} 
+                    style={{textTransform: 'none', justifyContent: 'flex-start'}} 
                     key={i} 
-                    className={`w-full flex btn ${currentResponseIndex === i ? 'btn-primary' : 'btn-ghost'}`} 
+                    className={` mt-[5px] xl:mt-[10px] w-full flex max-xl:btn-sm btn ${currentResponseIndex === i ? 'btn-primary' : 'btn-ghost'}`} 
                     onClick={() => setMessage(i)}
                 >
                     {response.messageTitle}

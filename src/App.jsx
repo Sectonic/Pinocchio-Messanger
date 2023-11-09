@@ -104,13 +104,13 @@ function App() {
   }, []);
 
   return (
-    <div data-theme="winter" className="h-screen w-screen flex justify-center items-center bg-primary-content">
+    <div data-theme="winter" className="h-screen w-screen overflow-hidden flex justify-center items-center bg-primary-content">
         <div className="mockup-browser border bg-primary w-[600px]">
             <div className="mockup-browser-toolbar">
               <div className="input pointer-events-none bg-primary-content">Pinocchio Messanger</div>
             </div>
             <div className="bg-base-100 py-2">
-              <div className="p-3 mx-2 px-3 bg-base-100 h-[50vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-rounded-xl">
+              <div className="p-3 mx-2 px-3 bg-base-100 h-[35vh] xl:h-[50vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-rounded-xl">
                 <TextingMessages allTexts={allTexts} />
                 {pinocchioLoading && (
                   <div className="chat chat-start ml-10">
@@ -127,7 +127,7 @@ function App() {
                 <div ref={chatBoxEnd}></div>
               </div>
             </div>
-            <div className="py-4 px-6 bg-base-200">
+            <div className="py-4 px-4 xl:px-6 bg-base-200">
                 { chatFinished ? (
                   <div className="mt-4 py-3 alert alert-success">
                     <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
