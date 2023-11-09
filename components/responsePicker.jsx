@@ -9,7 +9,7 @@ export default function ResponsePicker ({ setResponse, currentResponseIndex, cur
 
     return (
         <>
-            {currentConversation.possibleConversations.map((response, i) => (
+            {currentConversation?.possibleConversations?.map((response, i) => (
                 <div 
                     style={{marginTop: 10, textTransform: 'none', justifyContent: 'flex-start'}} 
                     key={i} 

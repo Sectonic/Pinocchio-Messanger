@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import ResponsePicker from "../components/responsePicker";
-import allResponses from "../components/responses";
 import TextingMessages from "../components/textingMessages";
 
 function App() {
+  const [allResponses, setAllResponses] = useState(null);
   const [currentConversation, setCurrentConversation] = useState(0);
   const [allTexts, setAllTexts] = useState([]);
   const [currentInputIndex, setCurrentInputIndex] = useState(null);
@@ -98,22 +98,32 @@ function App() {
         setChatDisabled(false);
       })();
     }
-  }, [currentConversation])
+  }, [currentConversation]);
 
   useEffect(() => {
-    ( async () => {
+    (async () => {
+      const request = await fetch(`https://api.jsonbin.io/v3/b/${import.meta.env.VITE_BIN_ID}`, {
+        method: 'GET',
+        headers: {
+          'X-Master-Key': import.meta.env.VITE_MASTER_KEY,
+          'X-Access-Key': import.meta.env.VITE_ACCESS_KEY,
+          'Content-Type': 'application/json',
+        }
+      });
+      const data = await request.json();
+      setAllResponses(data.record);
       await new Promise(resolve => setTimeout(resolve, 500));
       setPinocchioLoading(true);
       await new Promise(resolve => setTimeout(resolve, 1500));
       setPinocchioLoading(false);
-      const initialResponse = allResponses[currentConversation];
+      const initialResponse = data.record[0];
       setAllTexts([{
         name: 'Pinocchio',
         messages: initialResponse.initialMessages,
         time: initialResponse.startTime
       }]);
     })();
-  }, [])
+  }, []);
 
   return (
     <div data-theme="winter" className="h-screen w-screen flex justify-center items-center bg-primary-content">
@@ -164,12 +174,12 @@ function App() {
                   </div>
                 ) : (
                   <>
-                    <div className="text-sm py-2 ml-1 font-semibold opacity-80">Select a response</div>
+                    <div className="text-sm py-2 ml-1 font-semibold opacity-80">{allResponses ? 'Select a response' : 'Loading...'}</div>
                     <ResponsePicker
                       disableChat={chatDisabled}
                       setResponse={setCurrentInputIndex}
                       currentResponseIndex={currentInputIndex}
-                      currentConversation={allResponses[currentConversation]}
+                      currentConversation={allResponses ? allResponses[currentConversation] : []}
                       setCurrentInputSelection={setCurrentInputSelection}
                     />
                   </>
