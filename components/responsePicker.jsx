@@ -1,9 +1,8 @@
-export default function ResponsePicker ({ setResponse, currentResponseIndex, currentConversation, disableChat, setCurrentInputSelection }) {
+export default function ResponsePicker ({ setResponse, currentResponseIndex, currentConversation, disableChat}) {
 
     const setMessage = (index) => {
         if (!disableChat) {
             setResponse(index);
-            setCurrentInputSelection(currentConversation.possibleConversations[index].cricket.join('\n'));
         }
     }
 
